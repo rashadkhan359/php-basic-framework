@@ -3,23 +3,21 @@ define('BASE_URL', '/framework');
 define('BASE_DIR', __DIR__);
 // Include utility functions
 require_once  'helpers/utility.php';
+// require_once 'router.php';
+require_once 'database/Database.php';
 
-$path = parse_url($_SERVER['REQUEST_URI'])['path'];
+$config = require 'config/database.php';
 
-// Remove the base path from the request URI
-$uri = substr($path, strlen(BASE_URL));
+$db = new Database($config);
 
-$routes = [
-    '/' => 'index.php',
-    '/about' => 'about.php',
-    '/contact' => 'contact.php'
-];
 
-// Route to the appropriate controller (assuming your controllers are in 'app/Controllers/')
-$controller_root = 'app/Controllers/';
 
-if(array_key_exists($uri, $routes)){
-    require $controller_root . $routes[$uri];
+if(isset($_GET['id'])){
+    $query = "select * from posts where id = ?";
 }else{
-    abort(); // Consistent error handling
+    $query = "select * from posts";
 }
+
+$posts = $db->query($query, [$_GET['id']])->fetchAll();
+
+dd($posts);

@@ -18,8 +18,9 @@ function urlIs($value)
 }
 
 
-function abort($message = null, $code = 404) {
+function abort($code = 404) {
     http_response_code($code); // Set HTTP response code
     require './views/http-response/' . $code . '.php';
     die();  // Stop script execution
 }
+
