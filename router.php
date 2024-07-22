@@ -1,9 +1,6 @@
 <?php
 
-$path = parse_url($_SERVER['REQUEST_URI'])['path'];
-
-// Remove the base path from the request URI
-$uri = substr($path, strlen(BASE_URL));
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 $routes = require 'routes/web.php';
 

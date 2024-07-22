@@ -1,4 +1,4 @@
-<?php require_once 'partials/layout.php' ?>
+<?php require_once base_path('views/partials/layout.php') ?>
 <div class="mb-6">
     <a href="notes/create" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">+ Create</a>
 </div>
@@ -27,4 +27,4 @@
     <?php endforeach; ?>
 </ul>
 
-<?php require_once 'partials/footer.php' ?>
+<?php require_once base_path('views/partials/footer.php') ?>

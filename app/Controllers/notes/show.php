@@ -2,7 +2,7 @@
 
 $header = 'Note';
 
-$config = require 'config/database.php';
+$config = require base_path('config/database.php');
 
 $db = new Database($config);
 
@@ -14,4 +14,4 @@ $currentUserId = 1;
 
 authorize($note['user_id'] === $currentUserId);
 
-require_once 'views/note.php';
+require_once base_path('views/notes/show.php');

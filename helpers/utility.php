@@ -1,5 +1,5 @@
 <?php
-require 'app/Controllers/Response/Response.php';
+require_once base_path('app/Controllers/Response/Response.php');
 
 function dd($value)
 {
@@ -18,14 +18,18 @@ function urlIs($value)
 
 function url($path)
 {
-    return BASE_URL . '/' . ltrim($path, '/');
+    return base_url() . '/' . ltrim($path, '/');
+}
+
+function base_url(){
+    return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 }
 
 
 function abort($code = 404)
 {
     http_response_code($code); // Set HTTP response code
-    require './views/http-response/' . $code . '.php';
+    require base_path('views/http-response/' . $code . '.php');
     die();  // Stop script execution
 }
 
@@ -34,4 +38,8 @@ function authorize($condition, $status = Response::FORBIDDEN)
     if (!$condition) {
         abort($status);
     }
+}
+
+function base_path($path){
+    return BASE_PATH . $path;
 }
